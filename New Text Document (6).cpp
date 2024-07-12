@@ -1,63 +1,24 @@
 #include <iostream>
-
-#include <conio.h>
-
 using namespace std;
 
-int main()
+const float PI = 3.14159;
 
-{
-
-char ch[16];
-
-for (int i = 0; i < 16; i++)
-
-{
-
-ch[i]=_getch();
-
-cout << "\nwrong char please enter numberic char at" << i<<"\r\n";
-
-for (int ii = 0; iii; ii++)
-
-{
-
-if ('0' > (ch[i]) || '9' < (ch[i])) {
-
+float calculateArea(float radius) {
+    return PI  radius  radius;
 }
 
-cout <<< ch[ii];
-
-1--;
-
+float calculatePerimeter(float radius) {
+    return 2  PI  radius;
 }
 
-else
-
-{
-
-cout <<< ch[i];
-
-if (i == 3) cout << "-";
-
-if (i == 7)cout << "-"; if (i == 11) cout << "-";
-
-}
-
-}
-
-cout <<"\r\n";
-
-for (int i=0;116; 1++)
-
-{
-
-cout << ch[i];
-
-if (i == 3) cout << "-";
-
-if (i == 7) cout << "-"; if (i == 11) cout << "-";
-
-}
-
+int main() {
+    float radius;
+    
+    cout << "لطفا شعاع دایره را وارد کنید: ";
+    cin >> radius;
+    
+    cout << "مساحت دایره: " << calculateArea(radius) << endl;
+    cout << "محیط دایره: " << calculatePerimeter(radius) << endl;
+    
+    return 0;
 }
