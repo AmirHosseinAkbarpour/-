@@ -1,28 +1,36 @@
 #include <iostream>
-#include <string>
-using namespace std;
+#include <cmath>
+
+struct Point3D {
+    double x, y, z;
+};
+
+void inputPoint(Point3D &point, std::string pointName) {
+    std::cout << "Enter coordinates for point " << pointName << " (x y z): ";
+    std::cin >> point.x >> point.y >> point.z;
+}
+
+double distanceBetweenPoints(Point3D p1, Point3D p2) {
+    return sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2) + pow(p2.z - p1.z, 2));
+}
+
+bool pointsOnSamePlane(Point3D p1, Point3D p2) {
+    return (p1.z == p2.z);
+}
 
 int main() {
-    string cardNumber;
-    cout << "Enter a 16-digit card number: ";
-    cin >> cardNumber;
+    Point3D pointA, pointB;
 
-    // Check if the card number is valid (assuming it's a simple length check)
-    if (cardNumber.length() == 16) {
-        // Determine the bank based on the first few digits (you can expand this logic)
-        string bankName;
-        if (cardNumber.substr(0, 4) == "1234") {
-            bankName = "MELL";
-        } else {
-            bankName = "Unknown";
-        }
+    inputPoint(pointA, "A");
+    inputPoint(pointB, "B");
 
-        // Print the formatted output
-        cout << "CARD:" << cardNumber.substr(0, 4) << "-" << cardNumber.substr(4, 4) << "-" 
-             << cardNumber.substr(8, 4) << "-" << cardNumber.substr(12, 4) 
-             << ".BANK:" << bankName << endl;
+    double distance = distanceBetweenPoints(pointA, pointB);
+    std::cout << "Distance between points A and B: " << distance << std::endl;
+
+    if (pointsOnSamePlane(pointA, pointB)) {
+        std::cout << "Points A and B are on the same plane." << std::endl;
     } else {
-        cout << "Invalid card number. Please enter a 16-digit number." << endl;
+        std::cout << "Points A and B are not on the same plane." << std::endl;
     }
 
     return 0;
