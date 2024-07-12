@@ -1,22 +1,46 @@
 #include <iostream>
-#include <string>
-#include <regex>
 
-using namespace std;
+// تابع برای انجام عملیات ریاضی
+float calculate(float num1, float num2, char op) {
+    switch(op) {
+        case '+':
+            return num1 + num2;
+        case '-':
+            return num1 - num2;
+        case '*':
+            return num1 * num2;
+        case '/':
+            if(num2 != 0)
+                return num1 / num2;
+            else {
+                std::cout << "Error: Division by zero!" << std::endl;
+                return 0;
+            }
+        default:
+            std::cout << "Error: Invalid operator!" << std::endl;
+            return 0;
+    }
+}
 
 int main() {
-    string phoneNumber;
-    cout << "Enter a mobile phone number: ";
-    cin >> phoneNumber;
+    float number1, number2, result;
+    char operation;
 
-    // Regular expression to validate mobile phone number
-    regex pattern("[0-9]{11}");
+    // ورود اعداد و عملگر
+    std::cout << "Enter first number: ";
+    std::cin >> number1;
 
-    if (regex_match(phoneNumber, pattern)) {
-        cout << "Valid mobile phone number." << endl;
-    } else {
-        cout << "Invalid mobile phone number." << endl;
-    }
+    std::cout << "Enter an operator (+, -, *, /): ";
+    std::cin >> operation;
+
+    std::cout << "Enter second number: ";
+    std::cin >> number2;
+
+    // فراخوانی تابع برای محاسبه
+    result = calculate(number1, number2, operation);
+
+    // نمایش نتیجه
+    std::cout << "Result: " << result << std::endl;
 
     return 0;
 }
