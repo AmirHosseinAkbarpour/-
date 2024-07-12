@@ -1,93 +1,46 @@
 #include <iostream>
 
-using namespace std;
+int main() {
+    float g[10] = {18, 17, 16, 19, 20, 15, 14, 16, 18, 17};
+    float w[10] = {0.1, 0.2, 0.15, 0.1, 0.05, 0.1, 0.1, 0.05, 0.1, 0.15};
 
-double sqrto(double x) {
+    // Calculate weighted average
+    float weighted_sum = 0;
+    float total_weight = 0;
+    for (int i = 0; i < 10; i++) {
+        weighted_sum += g[i] * w[i];
+        total_weight += w[i];
+    }
+    
+    float weighted_average = weighted_sum / total_weight;
 
-double i = 0 buffer = 1;
+    // Find the highest score
+    float max_score = g[0];
+    for (int i = 1; i < 10; i++) {
+        if (g[i] > max_score) {
+            max_score = g[i];
+        }
+    }
 
-for (; buffer > 0.000000001 && ii x; buffer l = 2 )
+    // Find the score with the most impact
+    int max_impact_index = -1;
+    float max_impact_value = -1;
+    
+    for (int i = 0; i < 10; i++) {
+        if (w[i] * g[i] > max_impact_value) {
+            max_impact_value = w[i] * g[i];
+            max_impact_index = i;
+        }
+    }
 
-{ while ((i + buffer) *(i + buffer )< x ) { i += buffer;
+    std::cout << "Weighted Average: " << weighted_average << std::endl;
+    std::cout << "Highest Score: " << max_score << std::endl;
+    
+ if(max_impact_index != -1){
+  std::cout << "Score with the most impact: " << g[max_impact_index] << std::endl;
+ } else{
+  std::cout << "No score found with the most impact." << std::endl;
+ }
 
-}
-
-}
-
-} return i;
-
-double power (double x, double y) {
-
-doubler 1;
-
-double i = 0
-
-double buffer = 1;
-
-double gh = 0
-
-for (; buffer > 0 && iy; buffer l = 2
-
-{
-
-for (; i < y buffer; i += buffer)
-
-{
-
-r = r * x;
-
-x = sqrt(0) * (x)
-
-}
-
-}
-
-return r;
-
-int main()
-
-{
-
-double x, y;
-
-char p;
-
-cin >> x;
-
-cin >> p; cin >> y;
-
-switch (p)
-
-{
-
-case '+':
-
-cout << x + y; break;
-
-case -':
-
-cout << x yi break;
-
-case '*':
-
-cout << x * y; break;
-
-case '/':
-
-cout <<< x / y; break;
-
-case '%':
-
-cout << (long)x % (long)y; break;
-
-case ''
-
-cout << power(x,y); break;
-
-default:
-
-cout << "error"; break;
-
-}
-
+ return 0;
 }
