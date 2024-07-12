@@ -1,64 +1,88 @@
 #include <iostream>
-#include <string>
+#include <algorithm>
 
-class Dog {
-private:
-    std::string name;
-    int birthYear;
-    int age;
-    int score;
+using namespace std;
 
-public:
-    Dog(std::string dogName, int year) : name(dogName), birthYear(year), age(2021 - year), score(0) {}
-
-    void bark() {
-        std::cout << "Woof! Woof!" << std::endl;
+void inputArray(int arr[], int n) {
+    cout << "Enter " << n << " elements:" << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
     }
+}
 
-    void learn() {
-        score++;
-        std::cout << "Dog's score increased to: " << score << std::endl;
+void printArray(int arr[], int n) {
+    cout << "Array elements:" << endl;
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
     }
+    cout << endl;
+}
 
-    void displayInfo() {
-        std::cout << "Dog's Name: " << name << std::endl;
-        std::cout << "Dog's Age: " << age << " years" << std::endl;
-        std::cout << "Dog's Score: " << score << std::endl;
+int findMax(int arr[], int n) {
+    return *max_element(arr, arr + n);
+}
+
+int findMin(int arr[], int n) {
+    return *min_element(arr, arr + n);
+}
+
+int sumArray(int arr[], int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += arr[i];
     }
-};
+    return sum;
+}
+
+double averageArray(int arr[], int n) {
+    return (double)sumArray(arr, n) / n;
+}
+
+void sortArray(int arr[], int sortedArr[], int n) {
+    copy(arr, arr + n, sortedArr);
+    sort(sortedArr, sortedArr + n);
+}
+
+int searchValue(int arr[], int key, int n) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key)
+            return i;
+    }
+    
+    return -1;
+}
 
 int main() {
-    std::string dogName;
-    int birthYear;
-
-    // Create a dog object
-    std::cout << "Enter the dog's name: ";
-    std::cin >> dogName;
+    const int MAX_SIZE = 100;
     
-    std::cout << "Enter the dog's birth year: ";
-    std::cin >> birthYear;
+    int array[MAX_SIZE], sortedArray[MAX_SIZE], size, key;
 
-    Dog myDog(dogName, birthYear);
+    cout << "Enter the size of the array: ";
+    cin >> size;
 
-    int action = 1;
+    inputArray(array, size);
+    
+    printArray(array, size);
 
-    while (action != 0) {
-        // Perform actions based on user input
-        if (action == 1) {
-            myDog.bark();
-        } else if (action == 2) {
-            myDog.learn();
-        }
+    cout << "Maximum element: " << findMax(array, size) << endl;
+    
+ cout << "Minimum element: " << findMin(array, size) << endl;
 
-        // Get next action input
-        std::cout << "\nEnter action (1 - Bark, 2 - Learn, 0 - Exit): ";
-        std::cin >> action;
-        
-        if (action == 0) {
-            myDog.displayInfo();
-        }
-        
-     }
+ cout << "Sum of elements: " << sumArray(array, size) << endl;
 
-     return 0;
+ cout << "Average of elements: " << averageArray(array, size) << endl;
+
+ sortArray(array, sortedArray, size);
+ cout<<"Sorted array: ";
+ printArray(sortedArray,size);
+
+ cout<<"Enter a value to search in the array: ";
+ cin>>key;
+ int index=searchValue(array,key,size);
+ if(index!=-1)
+  cout<<"Value found at index "<<index<<endl;
+ else
+  cout<<"Value not found in the array."<<endl;
+
+ return 0;
 }
