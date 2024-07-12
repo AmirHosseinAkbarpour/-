@@ -1,32 +1,38 @@
 #include <iostream>
 using namespace std;
 
-const float VAT = 0.09;
-
-struct Food {
-    int code;
-    string name;
-    float price;
-};
-
 int main() {
-    Food foods[] = {{1, "Pizza", 10.99}, {2, "Burger", 5.99}, {3, "Salad", 4.50}};
-    Food drinks[] = {{1, "Cola", 1.99}, {2, "Coffee", 2.50}, {3, "Tea", 1.50}};
-    Food starters[] = {{1, "Garlic Bread", 3.99}, {2, "Soup", 2.99}, {3, "Bruschetta", 4.25}};
+    const int SIZE = 9;
+    int input, count[SIZE] = {0};
 
-    int foodCode, drinkCode, starterCode;
-    cout << "Enter food code: ";
-    cin >> foodCode;
-    cout << "Enter drink code: ";
-    cin >> drinkCode;
-    cout << "Enter starter code: ";
-    cin >> starterCode;
+    while (true) {
+        cin >> input;
+        if (input == 0) break;
+        if (input >= 1 && input <= 9) {
+            count[input - 1]++;
+        }
+    }
 
-    float total = foods[foodCode - 1].price + drinks[drinkCode - 1].price + starters[starterCode - 1].price;
-    
-    float vatAmount = total * VAT;
-    
-    cout << "Total amount with VAT: $" << total + vatAmount << endl;
+    int maxCount = count[0], minCount = count[0], maxNum = 1, minNum = 1;
+
+    for (int i = 1; i < SIZE; i++) {
+        if (count[i] > maxCount) {
+            maxCount = count[i];
+            maxNum = i + 1;
+        }
+        if (count[i] < minCount && count[i] > 0) {
+            minCount = count[i];
+            minNum = i + 1;
+        }
+    }
+
+    cout << "تعداد تکرار هر عدد:" << endl;
+    for (int i = 0; i < SIZE; i++) {
+        cout << "عدد " << i + 1 << ": " << count[i] << " بار" << endl;
+    }
+
+    cout << "بیشترین تکرار: عدد " << maxNum << " با تعداد " << maxCount << endl;
+    cout << "کمترین تکرار: عدد " << minNum << " با تعداد " << minCount << endl;
 
     return 0;
 }
